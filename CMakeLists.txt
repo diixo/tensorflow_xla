@@ -4,8 +4,17 @@ cmake_minimum_required (VERSION 2.8)
 project (tensorflow-prj-vs2015)
 
 # Set compiler flags and options. 
-# Here it is setting the Visual Studio warning level to 4
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W3")
+if(MSVC) # MSVC compiler (Win32 only)
+    # Display more warnings
+    set(CMAKE_CXX_FLAGS "/W3")
+elseif(UNIX OR CMAKE_COMPILER_IS_GNUCXX) # Clang OR Gcc (Linux, Mac OS or Win32 with MingW)
+    # Enable C++11 and displays all warnings
+    set(CMAKE_CXX_FLAGS "-Wall -std=c++11")
+    if(APPLE) # Clang / Mac OS only
+        # Required on OSX to compile c++11
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -mmacosx-version-min=10.7")
+    endif(APPLE)
+endif()
 
 # Command to output information to the console
 # Useful for displaying errors, warnings, and debugging
