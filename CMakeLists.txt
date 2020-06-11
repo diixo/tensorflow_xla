@@ -25,6 +25,7 @@ add_subdirectory (google)
 
 # Set include-directory
 # include_directories(${INCLUDE_DIRS})
+include_directories(google)
 
 set (SOURCE_TENSOR_NN 
 
