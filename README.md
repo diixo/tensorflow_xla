@@ -15,8 +15,7 @@ defaults to proprietary.
 
 ```
 mkdir build
-cd build
-cmake --build . --config Debug --target tensor_nn
+cmake --build ./build --config Debug --target tensor_nn
 make
 ```
 
